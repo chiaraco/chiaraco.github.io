@@ -6,13 +6,16 @@ p {
 /* 1.2 ID  */
 #header {
     font-weight: bold;
+	color: red;
 }
 /* 1.3 Classe  */
 .important {
     text-transform: uppercase;
 }
-
-
+.jersey {
+    font-weight: 1000;
+	background-color: #FFF4A3;
+}
 
 /* 2. Propriétés CSS */
 body {
@@ -69,7 +72,7 @@ h1 {
 
 /* 7. Animation et transition */
 .myAnimation {
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 10s ease-in-out;
 }
 
 @keyframes fadeIn {

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikachu crazy</title>
+    
+    <style>
+      #pikachu-container {
+        position: absolute;
+        font-family: monospace;
+        white-space: pre;
+        color: #F6CF57;
+        font-size: 1vw;
+        line-height: 0.6vw;
+      }
+
+      #pikachu-container::before {
+        content: var(--pikachu);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+	  
+      body {
+        background-color: black;
+      }
+	  
+      p {
+        font-size: 2vw;
+        line-height: 2vw;
+        color: white;
+      }
+    </style>
+</head>
+<body>
+  <p>Un Pikafou sauvage apparait...<br>
+  Pour l'attraper il faut cliquer dessus !</p>
+  
+  <div id="pikachu-container" onclick="alert('Nouveau message du Prof Chen : \nTu as attrapé le Pikafou !')">
+    (\\__/)<br>
+    (o^.^o)<br>
+     pika!
+  </div>
+
+  <!-- Code JavaScript -->
+  <script>
+    // Fonction de déplacement de Pikachu
+    function deplacerPikachu() {
+      var pikachu = document.getElementById('pikachu-container');
+      var nouvellePositionTop = Math.floor(Math.random() * (window.innerHeight - pikachu.clientHeight));
+      var nouvellePositionLeft = Math.floor(Math.random() * (window.innerWidth - pikachu.clientWidth));
+
+      pikachu.style.top = nouvellePositionTop + 'px';
+      pikachu.style.left = nouvellePositionLeft + 'px';
+    }
+
+    // La fonction est appelée toutes les 1000ms
+    setInterval(function() {
+      deplacerPikachu();
+    }, 1000);
+  </script>
+</body>
+</html>
