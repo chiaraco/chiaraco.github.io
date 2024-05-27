@@ -254,7 +254,6 @@ button
 .texte {
     width: 60%;
     padding: 20px;
-	font-size: 10em;
     box-sizing: border-box; /* Pour inclure le padding dans la largeur */
     display: flex;
     flex-direction: column;
