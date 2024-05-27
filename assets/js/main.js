@@ -5,7 +5,7 @@ jQuery(window).on('load', function() {
     // HIDE PRELOADER
     $(".preloader").addClass("hide-preloader");   
     
-    // SHOW/ANIMATE ANIMATION CONTAINER
+    // SHOW ANIMATE ANIMATION CONTAINER
     setTimeout(function(){
 
         $("#intro .animation-container").each(function() {
