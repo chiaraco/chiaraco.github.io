@@ -1,207 +1,361 @@
 <!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chiara Cordier - CV</title>
+  <link rel="shortcut icon" href="assets/img/analysis.png">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap" rel="stylesheet">
+  <style>
+    html, body { 
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
+    }
+    header {
+      background: #e6f0fa;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 12vw;
+    }
+    .brand { display: flex; flex-direction: column; }
+    .brand h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    .brand span { font-size: 18px; color: #555; }
+    nav a { margin-left: 40px; text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: #003163; }
 
-<html lang="en">
-   
-   
-    <head>
-       
-       
-        <!-- META -->
-        <meta charset="utf-8">
-        <meta name="robots" content="noodp">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-       
-        <!-- PAGE TITLE -->
-        <title>Chiara Cordier - Portfolio</title>
-       
-        <!-- FAVICON -->
-        <link rel="shortcut icon" href="assets/img/favicon.png">
-       
-        <!-- FONTS -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
-       
-        <!-- STYLESHEETS -->
-        <link rel="stylesheet" type="text/css" href="assets/css/plugins.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-        
-        
-    </head>
+    main {
+      flex: 1;
+      padding-left: 12vw;   /* marge gauche */
+      padding-right: 12vw;  /* marge droite */
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    main h2 { font-size: 26px; margin: 30px 0 10px; color: #003163; }
+    main p { font-size: 15px; line-height: 1.6; }
+    footer {
+      background: #e6f0fa;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+    .footer-inner { padding: 10px 12vw; }
 
-   
-    <body>
-    
-       
-        <!-- PRELOADER -->
-        <div class="preloader">
-           
-            <div class="spinner"></div>
-            
+    /* Boutons stylisés fixes */
+    .toggle-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;           /* prend tout l’espace du main */
+      padding: 12px 20px;
+      margin: 10px 0;
+      background-color: #e67e22;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .toggle-btn .arrow {
+      font-size: 16px;
+      margin-left: 15px; /* espace entre texte et flèche */
+      transition: transform 0.3s;
+    }
+
+    /* Rotation quand actif */
+    .toggle-btn.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Hover */
+    .toggle-btn:hover { background-color: #f18c36; }
+
+    /* Contenu masqué */
+    .toggle-content {
+      display: none;
+      padding: 15px 20px;
+      background-color: #f9f9f9;
+      border-left: 3px solid #003163;
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+    /* Titres et listes */
+    .toggle-content h3 { margin-top: 10px; margin-bottom: 5px; font-size: 16px; color: #003163; }
+    .toggle-content ul { margin: 5px 0 10px 20px; padding: 0; }
+    .toggle-content p { margin: 5px 0 10px 0; font-size: 15px; }
+
+    /* Compétences côte-à-côte */
+    .skills-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .skill-block {
+      flex: 1;
+      min-width: 150px;
+      background-color: #eaeaea;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .skill-block h4 {
+      margin-top: 0;
+      color: #003163;
+      font-size: 16px;
+    }
+
+    .toggle-btn, .toggle-content, .skills-container, .skill-block {
+      width: 100%;        /* remplissage complet du conteneur */
+      box-sizing: border-box; /* inclut padding dans la largeur */
+    }
+
+    /* titre principal aligné à gauche */
+    h1.cv-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #003163;
+      margin: 40px 0 10px 0; /* 40px au-dessus, 10px en dessous */
+      text-align: left;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: flex-start;
+      gap: 40px; /* espace entre les étapes */
+      position: relative;
+      padding-top: 20px; /* espace au-dessus du cercle */
+      margin-bottom: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 30px; /* moitié de la hauteur du cercle (20px) + 10px pour marge si nécessaire */
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-color: #003163;
+      z-index: 0;
+    }
+
+    .timeline-step {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .timeline-step .circle {
+      width: 20px;
+      height: 20px;
+      background-color: #e67e22;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .timeline-step .step-title {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #003163;
+    }
+
+    .timeline-step .step-details {
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between; /* titre à gauche, lieu à droite */
+      align-items: baseline; /* bien aligner texte */
+      margin-top: 15px;
+    }
+
+    .experience-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #003163;
+    }
+
+    .experience-location {
+      font-size: 15px;
+      color: #555;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Chiara CORDIER</h1>
+        <span>Data Scientist</span>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="cv.html">Curriculum Vitae</a>
+        <a href="contributions.html">Contributions</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="cv-title">Curriculum Vitae</h1>
+
+    <button class="toggle-btn">
+      Expériences professionnelles
+      <span class="arrow">▾</span>
+    </button>
+    <div class="toggle-content">
+      
+      <div class="experience-header">
+        <h3>Contrat doctoral (2021-2024)</h3>
+        <span class="experience-location"><em>Université d'Angers & Institut de Cancérologie de l'Ouest</em></span>
+      </div>
+      <ul>
+        <li>Développement d'algorithmes de <em>machine learning</em> pour l'amélioration des prédictions de rechutes de 
+          cancer à partir de données omiques provenant de la tumeur (<em>big data</em>)</li>
+        <li>Approche pluridisciplinaire : entre mathématiques, informatique et biologie</li>
+        <li>Techniques utilisées : classification, réduction de dimension, réseaux de neurones, autoencodeurs, multi-tâches, explicabilité du modèle</li>
+        <li>Financements : Ligue Nationale contre le Cancer & Institut de Cancérologie de l'Ouest</li>
+        <li>Enseignement en supplément : cours de mathématiques en Licence SVT (2023 et 2024)</li>
+      </ul>
+
+      <div class="experience-header">
+        <h3>Stage Data Scientist (mars à août 2021)</h3>
+        <span class="experience-location"><em>Institut de Cancérologie de l'Ouest</em></span>
+      </div>
+      <ul>
+        <li>Utilisation d'un modèle génératif (<em>Wasserstein GAN</em>) pour l'augmentation de la base de données omiques</li>
+        <li>Objectif : amélioration des prédictions de rechutes dans les cancers du sein</li>
+      </ul>
+
+    </div>
+
+    <button class="toggle-btn">
+      Formation
+      <span class="arrow">▾</span>
+    </button>
+    <div class="toggle-content">
+
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="circle"></div>
+          <div class="step-title">Licence de Mathématiques</div>
+          <div class="step-details">
+            2016-2019<br>
+            <em>Université d'Angers</em><br><br>
+            Licence MPCIE parcours Mathématiques
+            (Mathématiques - Physique - Chimie - Informatique - Economie)<br>
+            Mention très bien
+          </div>
         </div>
-        <!-- /PRELOADER -->
-    
-        
-        <!-- IMAGE CONTAINER -->
-        <div class="image-container">
-           
-            <div class="background-img"></div>
 
+        <div class="timeline-step">
+          <div class="circle"></div>
+          <div class="step-title">Master Data Science</div>
+          <div class="step-details">
+            2019-2021<br>
+            <em>Université d'Angers</em><br><br>
+            Parcours données biologiques<br>
+            Mention très bien
+          </div>
         </div>
-        <!-- /IMAGE CONTAINER -->
 
-
-        <!-- CONTENT AREA -->
-        <div class="content-area">
-
-
-            <!-- CONTENT AREA INNER --> 
-            <div class="content-area-inner">
-                
-                
-                <!-- SERVICE -->
-                <section id="service">
-
-
-                    <h3 class="headline scroll-animated">Curriculum Vitae</h3>
-                    
-                    
-                    <!-- SERVICE LIST -->
-                    <ul class="services-list">
-                       
-                       
-                        <!-- SERVICE ITEM -->
-                        <li class="service-item scroll-animated">
-                           
-                           
-                            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapse-item-1" aria-expanded="false">Mes expériences</button>
-                            
-                            
-                            <!-- COLLAPSE CONTENT -->
-                            <div class="collapse" id="collapse-item-1">
-                               
-                               
-                                <!-- COLLAPSE CONTENT INNER -->
-                                <div class="well">
-                                   
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis magna ac justo tincidunt, nec rhoncus leo rutrum. Duis mattis, neque id consectetur gravida, ligula massa consequat mi, id ultricies massa mauris eu augue. Donec dictum diam vitae dui iaculis, vitae laoreet sem molestie.</p>
-                                    
-                                </div>
-                                <!-- /COLLAPSE CONTENT INNER -->
-                                
-                                
-                            </div>
-                            <!-- /COLLAPSE CONTENT -->
-                            
-                            
-                        </li>
-                        <!-- /SERVICE ITEM -->
-                        
-                        
-                        <!-- SERVICE ITEM -->
-                        <li class="service-item scroll-animated">
-                           
-                           
-                            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapse-item-2" aria-expanded="false">Mes formations</button>
-                            
-                            
-                            <!-- COLLAPSE CONTENT -->
-                            <div class="collapse" id="collapse-item-2">
-                               
-                               
-                                <!-- COLLAPSE CONTENT INNER -->
-                                <div class="well">
-                                   
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis magna ac justo tincidunt, nec rhoncus leo rutrum. Duis mattis, neque id consectetur gravida, ligula massa consequat mi, id ultricies massa mauris eu augue. Donec dictum diam vitae dui iaculis, vitae laoreet sem molestie.</p>
-                                    
-                                </div>
-                                <!-- /COLLAPSE CONTENT INNER -->
-                                
-                                
-                            </div>
-                            <!-- /COLLAPSE CONTENT -->
-                            
-                            
-                        </li>
-                        <!-- /SERVICE ITEM -->
-                        
-                        
-                        <!-- SERVICE ITEM -->
-                        <li class="service-item scroll-animated">
-                           
-                           
-                            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapse-item-3" aria-expanded="false">Mes compétences</button>
-                            
-                            
-                            <!-- COLLAPSE CONTENT -->
-                            <div class="collapse" id="collapse-item-3">
-                               
-                               
-                                <!-- COLLAPSE CONTENT INNER -->
-                                <div class="well">
-                                   
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis magna ac justo tincidunt, nec rhoncus leo rutrum. Duis mattis, neque id consectetur gravida, ligula massa consequat mi, id ultricies massa mauris eu augue. Donec dictum diam vitae dui iaculis, vitae laoreet sem molestie.</p>
-                                    
-                                </div>
-                                <!-- /COLLAPSE CONTENT INNER -->
-                                
-                                
-                            </div>
-                            <!-- /COLLAPSE CONTENT -->
-                            
-                            
-                        </li>
-                        <!-- /SERVICE ITEM -->
-                        
-                        
-                        <!-- SERVICE ITEM -->
-                        <li class="service-item scroll-animated">
-                           
-                           
-                            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapse-item-4" aria-expanded="false">Mes loisirs</button>
-                            
-                            
-                            <!-- COLLAPSE CONTENT -->
-                            <div class="collapse" id="collapse-item-4">
-                               
-                               
-                                <!-- COLLAPSE CONTENT INNER -->
-                                <div class="well">
-                                   
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis magna ac justo tincidunt, nec rhoncus leo rutrum. Duis mattis, neque id consectetur gravida, ligula massa consequat mi, id ultricies massa mauris eu augue. Donec dictum diam vitae dui iaculis, vitae laoreet sem molestie.</p>
-                                    
-                                </div>
-                                <!-- /COLLAPSE CONTENT INNER -->
-                                
-                                
-                            </div>
-                            <!-- /COLLAPSE CONTENT -->
-                            
-                            
-                        </li>
-                        <!-- /SERVICE ITEM -->
-                        
-                        
-                    </ul>
-                    <!-- /SERVICE LIST -->
-
-
-                </section>
-                <!-- /SERVICE -->
-                               
-                  
-            </div>
-            <!-- /CONTENT AREA INNER -->
-
-
+        <div class="timeline-step">
+          <div class="circle"></div>
+          <div class="step-title">Doctorat de Mathématiques Appliquées</div>
+          <div class="step-details">
+            2021-2025<br>
+            <em>Université d'Angers</em><br><br>
+            Recherche contre le cancer du sein<br>
+            Thèse intitulée &laquo Développement de modèles d'apprentissage pour le traitement 
+            de données omiques dans les cancers du sein &raquo
+          </div>
         </div>
-        <!-- /CONTENT AREA -->
-        
-        
-        <!-- JAVASCRIPTS -->
-        <script type="text/javascript" src="assets/js/plugins.js"></script>
-        <script type="text/javascript" src="assets/js/main.js"></script>
-   
-   
-    </body> 
-    
-    
+      </div>
+
+
+    </div>
+
+    <button class="toggle-btn">
+      Compétences
+      <span class="arrow">▾</span>
+    </button>
+    <div class="toggle-content">
+      <div class="skills-container">
+        <div class="skill-block">
+          <h4>Langues</h4>
+          <ul>
+            <li>Français : langue maternelle</li>
+            <li>Anglais : intermédiaire</li>
+          </ul>
+        </div>
+        <div class="skill-block">
+          <h4>Programmation</h4>
+          <ul>
+            <li>Python, R, GPU, Github : maîtrisé</li>
+            <li>SQL, HTML, CSS : bonnes notions</li>
+            <li>Power BI : initiée</li>
+          </ul>
+        </div>
+        <div class="skill-block">
+          <h4>Relationnel</h4>
+          <ul>
+            <li>Travail en équipe</li>
+            <li>Ouverture d'esprit</li>
+            <li>Organisation, autonomie</li>
+            <li>Curiosité intellectuelle, veille technologique </li>
+            <li>Vulgarisation scientifique</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      © 2025 Chiara Cordier. Tous droits réservés.
+    </div>
+  </footer>
+
+  <script>
+  const buttons = document.querySelectorAll('.toggle-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const isActive = btn.classList.contains('active');
+      if (isActive) {
+        content.style.display = "none";
+        btn.classList.remove('active');
+      } else {
+        content.style.display = "block";
+        btn.classList.add('active');
+      }
+    });
+  });
+  </script>
+
+</body>
 </html>
